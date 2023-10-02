@@ -19,6 +19,7 @@ for i in palavroes:
 padrao = r'[!@#$%^&*()\-_+=\[\]{}|\\:;<>,.?/\'"]'
 chat = input('Me xinga, vai!\t').upper()
 mensagem = chat.split(" ")
+print(mensagem)
 for j in mensagem:
     mensagem = re.sub(padrao, '', j)
     
@@ -26,11 +27,13 @@ for j in mensagem:
 improprio = []
 for k in NovoPalavroes:
     if k in mensagem:
+        print(k)
         improprioCensurado = re.sub(k, f'*'*len(k), mensagem)
         improprio.append(k)
-
+    
 print(f'Numero de palavrões encontrados: {len(improprio)}\nPalavrões encontrados:\t', improprio)if improprio else 'Nenhum palavrão encontrado'
 
 print(chat)
 print(improprioCensurado)
+print(mensagem)
 arq.close()

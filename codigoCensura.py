@@ -22,6 +22,7 @@ mensagem = chat.split(" ")
 for j in mensagem:
     mensagem = re.sub(padrao, '', j)
     
+#Censura dos palavrões
 improprio = []
 for k in NovoPalavroes:
     if k in mensagem:

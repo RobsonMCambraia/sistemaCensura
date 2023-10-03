@@ -15,6 +15,8 @@ for i in palavroes:
     if i not in NovoPalavroes:
         NovoPalavroes.append(i)
 
+arq.close()
+
 #interação com usuário
 padrao = r'[!@#$%^&*()\-_+=\[\]{}|\\:;<>,.?/\'"]'
 chat = input('Me xinga, vai!\t').upper()
@@ -36,4 +38,3 @@ print(f'Numero de palavrões encontrados: {len(improprio)}\nPalavrões encontrad
 print(chat)
 print(improprioCensurado)
 print(mensagem)
-arq.close()

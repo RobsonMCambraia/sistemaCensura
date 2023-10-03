@@ -1,40 +1,28 @@
-# Sistema que substitue palavras impróprias
-
-#leitura do arquivo
 import re
-arq = open("palavroes.txt")
-palavroes = []
-NovoPalavroes = []
-linhas = arq.readlines()
 
-for linha in linhas:
-    linha = linha.strip().upper()
-    palavroes.append(linha)
+# Leitura do arquivo de palavrões
+with open("palavroes.txt") as arquivo:
+    palavroes = [linha.strip().upper() for linha in arquivo]
 
-for i in palavroes:
-    if i not in NovoPalavroes:
-        NovoPalavroes.append(i)
-
-arq.close()
-
-#interação com usuário
-padrao = r'[!@#$%^&*()\-_+=\[\]{}|\\:;<>,.?/\'"]'
+# Interação com o usuário
 chat = input('Me xinga, vai!\t').upper()
 mensagem = chat.split(" ")
-print(mensagem)
-for j in mensagem:
-    mensagem = re.sub(padrao, '', j)
-    
-#Censura dos palavrões
-improprio = []
-for k in NovoPalavroes:
-    if k in mensagem:
-        print(k)
-        improprioCensurado = re.sub(k, f'*'*len(k), mensagem)
-        improprio.append(k)
-    
-print(f'Numero de palavrões encontrados: {len(improprio)}\nPalavrões encontrados:\t', improprio)if improprio else 'Nenhum palavrão encontrado'
 
-print(chat)
-print(improprioCensurado)
-print(mensagem)
+# Censura dos palavrões
+improprio = []
+
+for palavra in palavroes:
+    for i, palavra_mensagem in enumerate(mensagem):
+        mensagem_censurada = re.sub(palavra, '*' * len(palavra), palavra_mensagem)
+        if mensagem_censurada != palavra_mensagem:
+            mensagem[i] = mensagem_censurada
+            improprio.append(palavra)
+
+mensagem_censurada = ' '.join(mensagem)
+
+if improprio:
+    print(f'Número de palavrões encontrados: {len(improprio)}')
+    print(f'Palavrões encontrados: {improprio}')
+    print(f'Mensagem censurada: {mensagem_censurada}')
+else:
+    print('Nenhum palavrão encontrado')

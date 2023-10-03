@@ -5,7 +5,7 @@ with open("palavroes.txt") as arquivo:
     palavroes = [linha.strip().upper() for linha in arquivo]
 
 # Interação com o usuário
-chat = input('Me xinga, vai!\t').upper()
+chat = input('Me xinga, vai!:\t').upper()
 mensagem = chat.split(" ")
 
 # Censura dos palavrões

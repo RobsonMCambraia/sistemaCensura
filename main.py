@@ -1,7 +1,7 @@
 from censurador_util import Censurador
 
 censurador = Censurador("palavroes.txt")
-chat = input('Me xinga, vai!\t')
+chat = input('Digite seu texto:\t')
 mensagem_censurada, palavroes_encontrados = censurador.censurar_mensagem(chat)
 
 if palavroes_encontrados:
